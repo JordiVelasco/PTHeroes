@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms'; // Agrega esta importación
 import { HeroService } from "../hero.service";
 
 @Component({
-  selector: 'app-hero-list',
   standalone: true,
-  imports: [CommonModule],
+  selector: 'app-hero-list',
   templateUrl: './hero-list.component.html',
-  styleUrl: './hero-list.component.css'
+  styleUrls: ['./hero-list.component.css'],
+  imports: [CommonModule, FormsModule] // Asegúrate de tener FormsModule aquí
 })
 export class HeroListComponent implements OnInit {
 
@@ -20,8 +21,8 @@ export class HeroListComponent implements OnInit {
     this.heroes = this.heroService.getAllHeroes();
   }
 
-  editHero(): void{
-
-  }
+  editHero(): void{}
+  saveHero(): void{}
+  cancel(): void{}
 
 }
