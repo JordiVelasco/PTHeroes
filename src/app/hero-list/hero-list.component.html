@@ -23,10 +23,7 @@
       <h3>Editar Héroe</h3>
       <form>
         <label for="heroName">Nombre:</label>
-        <input type="text" id="heroName" [(ngModel)]="selectedHero.name" required>
-        
-        <!-- Agrega más campos según tus necesidades -->
-        
+        <input type="text" name="heroName" [(ngModel)]="selectedHero.name" required>        
         <button type="button" (click)="saveHero()">Guardar</button>
         <button type="button" (click)="cancel()">Cancelar</button>
       </form>

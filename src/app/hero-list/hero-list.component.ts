@@ -22,7 +22,15 @@ export class HeroListComponent implements OnInit {
   }
 
   editHero(): void{}
-  saveHero(): void{}
+  saveHero(): void {
+    if (this.selectedHero && this.selectedHero.id) {
+      this.heroService.updateHero(this.selectedHero);
+    } else {
+      this.heroService.addHero(this.selectedHero);
+    }
+      this.selectedHero = {};
+      this.heroes = this.heroService.getAllHeroes();
+  }
   cancel(): void{}
 
 }

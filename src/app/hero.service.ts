@@ -17,16 +17,22 @@ export class HeroService {
     return id;
   }
 
-  /*getHeroesByName(name: String): any[]{
-    return name;
+  addHero(hero: any): void {
+    hero.id = this.getNextId();
+    this.hero.push(hero);
   }
 
-  modifyHero(hero: string): void{
-
+  updateHero(hero: any): void {
+    const index = this.hero.findIndex(h => h.id === hero.id);
+    if (index !== -1) {
+      this.hero[index] = hero;
+    }
   }
 
-  delHero(hero: string): void{
+  private getNextId(): number {
+    const maxId = Math.max(...this.hero.map(h => h.id), 0);
+    return maxId + 1;
+  }
 
-  } */ 
 
 }
