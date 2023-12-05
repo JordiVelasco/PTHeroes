@@ -12,8 +12,7 @@ import { HeroService } from "../hero.service";
 })
 export class HeroListComponent implements OnInit {
 
-  heroes: any[] = [];
-  selectedHero: any = {};
+  heroes: any = {};
 
   constructor(private heroService: HeroService) {}
 
@@ -21,18 +20,18 @@ export class HeroListComponent implements OnInit {
     this.heroes = this.heroService.getAllHeroes();
   }
   
-  editHero(hero: any): void{this.selectedHero = { ...hero };}
+  editHero(hero: any): void{this.heroes = { ...hero };}
 
   saveHero(): void {
-    if (this.selectedHero && this.selectedHero.id) {
-      this.heroService.updateHero(this.selectedHero);
+    if (this.heroes && this.heroes.id) {
+      this.heroService.updateHero(this.heroes);
     } else {
-      this.heroService.addHero(this.selectedHero);
+      this.heroService.addHero(this.heroes);
     }
-      this.selectedHero = {};
+      this.heroes = {};
       this.heroes = this.heroService.getAllHeroes();
   }
 
-  cancel(): void{this.selectedHero = {};}
+  cancel(): void{this.heroes = {};}
 
 }
