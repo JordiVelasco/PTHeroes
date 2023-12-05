@@ -1,6 +1,5 @@
 <div>
     <h2>Lista de Héroes</h2>
-    
     <table>
       <thead>
         <tr>
@@ -14,9 +13,10 @@
           <td>{{ hero.id }}</td>
           <td>{{ hero.name }}</td>
           <td>
-            <button (click)="editHero()">Editar</button>
+            <button type="button" (click)="editHero(hero)">Editar</button>
           </td>
         </tr>
+        
       </tbody>
     </table>  
     <div *ngIf="selectedHero">

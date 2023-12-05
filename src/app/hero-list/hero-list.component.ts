@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Agrega esta importación
+import { FormsModule } from '@angular/forms';
 import { HeroService } from "../hero.service";
 
 @Component({
@@ -8,7 +8,7 @@ import { HeroService } from "../hero.service";
   selector: 'app-hero-list',
   templateUrl: './hero-list.component.html',
   styleUrls: ['./hero-list.component.css'],
-  imports: [CommonModule, FormsModule] // Asegúrate de tener FormsModule aquí
+  imports: [CommonModule, FormsModule]
 })
 export class HeroListComponent implements OnInit {
 
@@ -20,8 +20,9 @@ export class HeroListComponent implements OnInit {
   ngOnInit(): void {
     this.heroes = this.heroService.getAllHeroes();
   }
+  
+  editHero(hero: any): void{this.selectedHero = { ...hero };}
 
-  editHero(): void{}
   saveHero(): void {
     if (this.selectedHero && this.selectedHero.id) {
       this.heroService.updateHero(this.selectedHero);
@@ -31,6 +32,7 @@ export class HeroListComponent implements OnInit {
       this.selectedHero = {};
       this.heroes = this.heroService.getAllHeroes();
   }
-  cancel(): void{}
+
+  cancel(): void{this.selectedHero = {};}
 
 }
