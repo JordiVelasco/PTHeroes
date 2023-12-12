@@ -9,7 +9,7 @@ export class HeroService {
 
   constructor() { }
 
-  getAllHeroes(): any[]{
+  getAllHeroes(): any[] {
     return this.hero;
   }
 
@@ -34,5 +34,11 @@ export class HeroService {
     return maxId + 1;
   }
 
-
+  deleteHero(hero: any): void {
+    const index: number = this.hero.findIndex(h => h.id === hero.id);
+    if (index !== -1) {
+      this.hero.splice(index, 1);
+    }
+  }
+  
 }
