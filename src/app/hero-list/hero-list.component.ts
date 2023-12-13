@@ -14,15 +14,20 @@ export class HeroListComponent implements OnInit {
 
   heroes: any[] = [];
   selectedHero: any = {};
+  filterValue = '';
 
-  constructor(private heroService: HeroService) {}
+  constructor(private heroService: HeroService) { }
 
   ngOnInit(): void {
     this.heroes = this.heroService.getAllHeroes();
   }
-  
-  editHero(hero: any): void{
+
+  editHero(hero: any): void {
     this.selectedHero = { ...hero };
+  }
+
+  searchHero(): void {
+    this.heroes = this.heroService.getAllHeroes().filter(hero => hero.name.includes(this.filterValue));
   }
 
   saveHero(): void {
@@ -31,13 +36,13 @@ export class HeroListComponent implements OnInit {
     } else {
       this.heroService.addHero(this.selectedHero);
     }
-      this.selectedHero = {};
-      this.heroes = this.heroService.getAllHeroes();
+    this.selectedHero = {};
+    this.heroes = this.heroService.getAllHeroes();
   }
 
   deleteHero(hero: any): void {
-  this.heroService.deleteHero(hero);
-  this.heroes = this.heroService.getAllHeroes();
-}
-  cancel(): void{this.selectedHero = {};}
+    this.heroService.deleteHero(hero);
+    this.heroes = this.heroService.getAllHeroes();
+  }
+  cancel(): void { this.selectedHero = {}; }
 }

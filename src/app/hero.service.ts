@@ -40,5 +40,5 @@ export class HeroService {
       this.hero.splice(index, 1);
     }
   }
-  
+
 }
