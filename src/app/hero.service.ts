@@ -6,7 +6,6 @@ import { Injectable } from '@angular/core';
 export class HeroService {
 
   private hero: any[] = [];
-
   constructor() { }
 
   getAllHeroes(): any[] {
@@ -34,11 +33,15 @@ export class HeroService {
     return maxId + 1;
   }
 
-  deleteHero(hero: any): void {
+  deleteService(hero: any): void {
     const index: number = this.hero.findIndex(h => h.id === hero.id);
     if (index !== -1) {
       this.hero.splice(index, 1);
     }
+  }
+
+  searchService(filter: string): any{
+    return this.getAllHeroes().filter( hero => hero.name.includes(filter))
   }
 
 }

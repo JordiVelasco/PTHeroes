@@ -27,7 +27,7 @@ export class HeroListComponent implements OnInit {
   }
 
   searchHero(): void {
-    this.heroes = this.heroService.getAllHeroes().filter(hero => hero.name.includes(this.filterValue));
+    this.heroes = this.heroService.searchService(this.filterValue);
   }
 
   saveHero(): void {
@@ -41,7 +41,7 @@ export class HeroListComponent implements OnInit {
   }
 
   deleteHero(hero: any): void {
-    this.heroService.deleteHero(hero);
+    this.heroService.deleteService(hero);
     this.heroes = this.heroService.getAllHeroes();
   }
   cancel(): void { this.selectedHero = {}; }
