@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeroService } from "../hero.service";
+import { flatMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -15,6 +16,7 @@ export class HeroListComponent implements OnInit {
   heroes: any[] = [];
   selectedHero: any = {};
   filterValue = '';
+  showForm = false;
 
   constructor(private heroService: HeroService) { }
 
@@ -24,10 +26,16 @@ export class HeroListComponent implements OnInit {
 
   editHero(hero: any): void {
     this.selectedHero = { ...hero };
+    this.showForm = true;
   }
 
   searchHero(): void {
     this.heroes = this.heroService.searchService(this.filterValue);
+  }
+
+  addHero(): void {
+    this.showForm = true;
+    this.selectedHero = {};
   }
 
   saveHero(): void {
@@ -38,11 +46,19 @@ export class HeroListComponent implements OnInit {
     }
     this.selectedHero = {};
     this.heroes = this.heroService.getAllHeroes();
+    this.showForm = false;
   }
 
   deleteHero(hero: any): void {
-    this.heroService.deleteService(hero);
-    this.heroes = this.heroService.getAllHeroes();
+    const confirmDelete = window.confirm(`¿Estás seguro que deseas borrar a ${hero.name}?`);
+    if (confirmDelete) {
+      this.heroService.deleteService(hero);
+      this.heroes = this.heroService.getAllHeroes();
+    }
   }
-  cancel(): void { this.selectedHero = {}; }
+
+  cancel(): void { 
+    this.selectedHero = {}; 
+    this.showForm = false;
+  }
 }

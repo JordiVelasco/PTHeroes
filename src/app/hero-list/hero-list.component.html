@@ -21,13 +21,19 @@
       </tr>
     </tbody>
   </table>
-  <div *ngIf="heroes">
-    <h3>Editar Héroe</h3>
+  <button type="button" (click)="addHero()">Añadir Nuevo Héroe</button>
+
+  <!-- Formulario (mostrado solo si showForm es true) -->
+  <div *ngIf="showForm">
+    <h3>Añadir Nuevo Héroe</h3>
     <form>
+      <!-- Campos del formulario (nombre, poder, etc.) -->
       <label for="heroName">Nombre:</label>
       <input type="text" name="heroName" [(ngModel)]="selectedHero.name" required>
+  
+      <!-- Otros campos del formulario... -->
+  
       <button type="button" (click)="saveHero()">Guardar</button>
       <button type="button" (click)="cancel()">Cancelar</button>
     </form>
   </div>
-</div>
