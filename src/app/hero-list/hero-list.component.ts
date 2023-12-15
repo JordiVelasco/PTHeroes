@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HeroService } from "../hero.service";
-import { flatMap } from 'rxjs';
 
 @Component({
   standalone: true,
@@ -50,7 +49,9 @@ export class HeroListComponent implements OnInit {
   }
 
   deleteHero(hero: any): void {
-    const confirmDelete = window.confirm(`¿Estás seguro que deseas borrar a ${hero.name}?`);
+    const confirmDelete = window.confirm(
+      `¿Estás seguro que deseas borrar a ${hero.name}?`
+    );
     if (confirmDelete) {
       this.heroService.deleteService(hero);
       this.heroes = this.heroService.getAllHeroes();
